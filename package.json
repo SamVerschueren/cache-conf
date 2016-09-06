@@ -1,6 +1,6 @@
 {
   "name": "cache-conf",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Simple cache config handling for your app or module",
   "license": "MIT",
   "repository": "SamVerschueren/cache-conf",
