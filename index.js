@@ -17,10 +17,21 @@ class CacheConf extends Conf {
 	set(key, val, opts) {
 		opts = opts || {};
 
-		super.set(key, {
-			timestamp: opts.maxAge && Date.now() + opts.maxAge,
-			data: val
-		});
+		if (typeof key === 'object') {
+			opts = val || {};
+
+			Object.keys(key).forEach(k => {
+				super.set(k, {
+					timestamp: opts.maxAge && Date.now() + opts.maxAge,
+					data: key[k]
+				});
+			});
+		} else {
+			super.set(key, {
+				timestamp: opts.maxAge && Date.now() + opts.maxAge,
+				data: val
+			});
+		}
 	}
 
 	has(key) {

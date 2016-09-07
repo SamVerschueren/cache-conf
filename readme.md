@@ -50,6 +50,10 @@ An extended [conf](https://github.com/sindresorhus/conf#instance) instance.
 
 Set an item.
 
+#### set(object, [options])
+
+Set multiple items at once.
+
 ##### options
 
 ###### maxAge
