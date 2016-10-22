@@ -11,7 +11,7 @@ class CacheConf extends Conf {
 		const pkgPath = pkgUp.sync(parentDir);
 
 		options = Object.assign({
-			projectName: pkgPath && require(pkgPath).name
+			projectName: pkgPath && require(pkgPath).name	// eslint-disable-line import/no-dynamic-require
 		}, options);
 
 		super(options);
