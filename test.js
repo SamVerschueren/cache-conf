@@ -1,3 +1,4 @@
+import path from 'path';
 import test from 'ava';
 import tempfile from 'tempfile';
 import delay from 'delay';
@@ -7,6 +8,22 @@ const fixture = '🦄';
 
 test.beforeEach(t => {
 	t.context.conf = new CacheConf({cwd: tempfile()});
+});
+
+test('constructor', async t => {
+	const conf = new CacheConf();
+	const filePath = conf.path.split(path.sep);
+
+	t.is(filePath.pop(), 'config.json');
+	t.is(filePath.pop(), 'cache-conf-nodejs');
+});
+
+test('project name', async t => {
+	const conf = new CacheConf({projectName: 'foo'});
+	const filePath = conf.path.split(path.sep);
+
+	t.is(filePath.pop(), 'config.json');
+	t.is(filePath.pop(), 'foo-nodejs');
 });
 
 test('.set()', async t => {

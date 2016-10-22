@@ -1,7 +1,21 @@
 'use strict';
+const path = require('path');
 const Conf = require('conf');
+const pkgUp = require('pkg-up');
+
+const parentDir = path.dirname(module.parent.filename);
 
 class CacheConf extends Conf {
+
+	constructor(options) {
+		const pkgPath = pkgUp.sync(parentDir);
+
+		options = Object.assign({
+			projectName: pkgPath && require(pkgPath).name
+		}, options);
+
+		super(options);
+	}
 
 	get(key) {
 		if (this.isExpired(key)) {
