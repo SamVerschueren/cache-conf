@@ -62,6 +62,12 @@ Type: `number`
 
 Number of milliseconds the cached value is valid.
 
+###### version
+
+Type: `string`
+
+Version number of the data. If the version provided is not the same as the version of the cached data, the data will be invalid.
+
 #### isExpired(key)
 
 Boolean indicating if the cached data is expired.

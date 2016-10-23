@@ -15,6 +15,8 @@ class CacheConf extends Conf {
 		}, options);
 
 		super(options);
+
+		this.version = options.version;
 	}
 
 	get(key) {
@@ -37,12 +39,14 @@ class CacheConf extends Conf {
 			Object.keys(key).forEach(k => {
 				super.set(k, {
 					timestamp: opts.maxAge && Date.now() + opts.maxAge,
+					version: this.version,
 					data: key[k]
 				});
 			});
 		} else {
 			super.set(key, {
 				timestamp: opts.maxAge && Date.now() + opts.maxAge,
+				version: this.version,
 				data: val
 			});
 		}
@@ -64,7 +68,14 @@ class CacheConf extends Conf {
 	isExpired(key) {
 		const item = super.get(key);
 
-		return Boolean(item && item.timestamp && item.timestamp < Date.now());
+		if (!item) {
+			return false;
+		}
+
+		const invalidTimestamp = item.timestamp && item.timestamp < Date.now();
+		const invalidVersion = item.version !== this.version;
+
+		return Boolean(invalidTimestamp || invalidVersion);
 	}
 }
 
