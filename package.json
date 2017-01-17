@@ -39,7 +39,7 @@
     "write"
   ],
   "dependencies": {
-    "conf": "^0.11.2",
+    "conf": "^0.12.0",
     "pkg-up": "^1.0.0"
   },
   "devDependencies": {
