@@ -60,3 +60,10 @@ test('version', async t => {
 	const conf3 = new CacheConf({cwd, version: '1.1.0'});
 	t.falsy(conf3.get('foo'));
 });
+
+test('record expires when set with `maxAge` equals to `0`', async t => {
+	const conf = new CacheConf({cwd: tempfile()});
+	conf.set('unicorn', fixture, {maxAge: 0});
+	t.true(conf.isExpired('unicorn'));
+	t.is(conf.get('unicorn'), undefined);
+});
