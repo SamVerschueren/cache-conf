@@ -6,7 +6,7 @@ import CacheConf from './';
 
 const fixture = '🦄';
 
-test('constructor', async t => {
+test('constructor', t => {
 	const conf = new CacheConf();
 	const filePath = conf.path.split(path.sep);
 
@@ -14,7 +14,7 @@ test('constructor', async t => {
 	t.is(filePath.pop(), 'cache-conf-nodejs');
 });
 
-test('project name', async t => {
+test('project name', t => {
 	const conf = new CacheConf({projectName: 'foo'});
 	const filePath = conf.path.split(path.sep);
 
@@ -47,7 +47,7 @@ test('.set() with object', async t => {
 	t.falsy(conf.get('foo'));
 });
 
-test('version', async t => {
+test('version', t => {
 	const cwd = tempfile();
 
 	const conf = new CacheConf({cwd, version: '1.0.0'});
@@ -64,6 +64,7 @@ test('version', async t => {
 test('record expires when set with `maxAge` equals to `0`', async t => {
 	const conf = new CacheConf({cwd: tempfile()});
 	conf.set('unicorn', fixture, {maxAge: 0});
+	await delay(1);
 	t.true(conf.isExpired('unicorn'));
 	t.is(conf.get('unicorn'), undefined);
 });
