@@ -47,6 +47,16 @@ test('.set() with object', async t => {
 	t.falsy(conf.get('foo'));
 });
 
+test('.get() with `ignoreMaxAge`', async t => {
+	const conf = new CacheConf({cwd: tempfile()});
+
+	conf.set('unicorn', fixture, {maxAge: 100});
+	await delay(100);
+	t.is(conf.get('unicorn', {ignoreMaxAge: true}), fixture);
+	t.true(conf.isExpired('unicorn'));
+	t.falsy(conf.get('unicorn'));
+});
+
 test('version', t => {
 	const cwd = tempfile();
 

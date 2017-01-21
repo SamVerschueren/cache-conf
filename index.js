@@ -19,8 +19,10 @@ class CacheConf extends Conf {
 		this.version = options.version;
 	}
 
-	get(key) {
-		if (this.isExpired(key)) {
+	get(key, options) {
+		options = options || {};
+
+		if (options.ignoreMaxAge !== true && this.isExpired(key)) {
 			super.delete(key);
 			return;
 		}

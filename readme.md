@@ -46,6 +46,19 @@ Any of the [conf options](https://github.com/sindresorhus/conf#options).
 
 An extended [conf](https://github.com/sindresorhus/conf#instance) instance.
 
+#### get(key, [options])
+
+Get an item.
+
+##### options
+
+###### ignoreMaxAge
+
+Type: `boolean`<br>
+Default: `false`
+
+Get the item for the `key` provided without taking the `maxAge` of the item into account.
+
 #### set(key, value, [options])
 
 Set an item.
