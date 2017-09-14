@@ -2,8 +2,7 @@
 
 > Simple cache config handling for your app or module
 
-If you don't need caching, you should use [conf](https://github.com/sindresorhus/conf) instead. This module extends that module and
-abstracts away the caching mechanism.
+If you don't need caching, you should use [conf](https://github.com/sindresorhus/conf) instead. This module extends that module and abstracts away the caching mechanism.
 
 
 ## Install
