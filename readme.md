@@ -89,6 +89,7 @@ Boolean indicating if the cached data is expired.
 ## Related
 
 - [conf](https://github.com/sindresorhus/conf) - Simple config handling for your app or module
+- [observable-conf](https://github.com/SamVerschueren/observable-conf) - Listen for changes in your conf config
 
 
 ## License
